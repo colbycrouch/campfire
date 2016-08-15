@@ -4,7 +4,7 @@ var pikePlace = {
   id: 'pike place market',
   minCustHr: 14,
   maxCustHr: 35,
-  avgCupHr: 1.2,
+  avgCup: 1.2,
   avgPound: 0.34,
   custHr: [], //number of customers per hour
   cupHr: [], //number of cups per hour
@@ -23,63 +23,63 @@ var pikePlace = {
       this.custHr[i] = Math.floor(Math.random() * (this.maxCustHr - this.minCustHr) + this.minCustHr);
     }
   },
-  randomCupHr: function() {
+  numCupHr: function() {
     for (var i = 0; i < time.length; i++) {
-      this.cupHr[i] = parseFloat((this.cupHr[i] * this.avgCupHr).toFixed(2));
+      this.cupHr[i] = parseFloat((this.custHr[i] * this.avgCup).toFixed(2));
     }
   },
-  randomPoundHr: function() {
+  numPoundHr: function() {
     for (var i = 0; i < time.length; i++) {
       this.poundHr[i] = parseFloat((this.custHr[i] * this.avgPound).toFixed(2));
     }
   },
-  randomPoundCup: function() {
+  numPoundCup: function() {
     for (var i = 0; i < time.length; i++) {
       this.poundCup[i] = parseFloat((this.cupHr[i] / 16).toFixed(2));
     }
   },
-  randomBothPound: function() {
+  numBothPound: function() {
     for (var i = 0; i < time.length; i++) {
       this.bothPound[i] = parseFloat((this.poundHr[i] + this.poundCup[i]).toFixed(2));
     }
   },
-  randomEmpHr: function() {
+  numEmpHr: function() {
     for (var i = 0; i < time.length; i++) {
       this.empHr[i] = Math.ceil(this.custHr[i] / 30);
     }
   },
   totalCustCalc: function() {
     for (var i = 0; i < time.length; i++) {
-      this.totalCust += this.custHr [i];
+      this.totalCust += this.custHr[i];
     }
   },
   totalCupCalc: function() {
     for (var i = 0; i < time.length; i++) {
-      this.totalCup[i] += this.cupHr [i];
-      this.totalCup[i] = parseFloat(this.totalCup.toFixed(2));
+      this.totalCup += this.cupHr[i];
     }
+    this.totalCup[i] = parseFloat(this.totalCup.toFixed(2));
   },
   totalPoundTGCalc: function () {
     for (var i = 0; i < time.length; i++) {
       this.totalPoundTG += this.poundHr[i];
-      this.totalPoundTG = parseFloat(this.totalPoundTG.toFixed(2));
     }
+    this.totalPoundTG = parseFloat(this.totalPoundTG.toFixed(2));
   },
   totalPoundDayCalc: function () {
     for (var i = 0; i < time.length; i++) {
       this.totalPoundDay += this.bothPound[i];
-      this.totalPoundDay = parseFloat(this.totalPoundDay.toFixed(2));
     }
-  }
+    this.totalPoundDay = parseFloat(this.totalPoundDay.toFixed(2));
+  },
 };
 
 
 pikePlace.randomCustHr ();
-pikePlace.randomCupHr ();
-pikePlace.randomPoundHr ();
-pikePlace.randomPoundCup ();
-pikePlace.randomBothPound ();
-pikePlace.randomEmpHr ();
+pikePlace.numCupHr ();
+pikePlace.numPoundHr ();
+pikePlace.numPoundCup ();
+pikePlace.numBothPound ();
+pikePlace.numEmpHr ();
 pikePlace.totalCustCalc ();
 pikePlace.totalCupCalc ();
 pikePlace.totalPoundTGCalc ();
@@ -96,7 +96,7 @@ var capHill = {
   id: 'capitol hill',
   minCustHr: 12,
   maxCustHr: 28,
-  avgCupHr: 3.2,
+  avgCup: 3.2,
   avgPound: 0.03,
   custHr: [], //number of customers per hour
   cupHr: [], //number of cups per hour
@@ -115,27 +115,27 @@ var capHill = {
       this.custHr[i] = Math.floor(Math.random() * (this.maxCustHr - this.minCustHr) + this.minCustHr);
     }
   },
-  cupHr: function() {
+  numCupHr: function() {
     for (var i = 0; i < time.length; i++) {
-      this.cupHr[i] = parseFloat((this.cupHr[i] * this.avgCupHr).toFixed(1));
+      this.cupHr[i] = parseFloat((this.custHr[i] * this.avgCup).toFixed(2));
     }
   },
-  poundHr: function() {
+  numPoundHr: function() {
     for (var i = 0; i < time.length; i++) {
-      this.poundHr[i] = parseFloat((this.custHr[i] * this.avgPound).toFixed(1));
+      this.poundHr[i] = parseFloat((this.custHr[i] * this.avgPound).toFixed(2));
     }
   },
-  poundCup: function() {
+  numPoundCup: function() {
     for (var i = 0; i < time.length; i++) {
-      this.poundCup[i] = parseFloat((this.cupHr[i] / 16).toFixed(1));
+      this.poundCup[i] = parseFloat((this.cupHr[i] / 16).toFixed(2));
     }
   },
-  bothPound: function() {
+  numBothPound: function() {
     for (var i = 0; i < time.length; i++) {
-      this.bothPound[i] = parseFloat((this.poundHr[i] + this.poundCup[i]).toFixed(1));
+      this.bothPound[i] = parseFloat((this.poundHr[i] + this.poundCup[i]).toFixed(2));
     }
   },
-  empHr: function() {
+  numEmpHr: function() {
     for (var i = 0; i < time.length; i++) {
       this.empHr[i] = Math.ceil(this.custHr[i] / 30);
     }
@@ -147,30 +147,31 @@ var capHill = {
   },
   totalCupCalc: function() {
     for (var i = 0; i < time.length; i++) {
-      this.totalCup[i] += this.cupHr [i];
-      this.totalCup[i] = parseFloat(this.totalCup.toFixed(1));
+      this.totalCup += this.cupHr [i];
+      this.totalCup[i] = parseFloat(this.totalCup.toFixed(2));
     }
   },
   totalPoundTGCalc: function () {
     for (var i = 0; i < time.length; i++) {
       this.totalPoundTG += this.poundHr[i];
-      this.totalPoundTG = parseFloat(this.totalPoundTG.toFixed(1));
+      this.totalPoundTG = parseFloat(this.totalPoundTG.toFixed(2));
     }
   },
   totalPoundDayCalc: function () {
     for (var i = 0; i < time.length; i++) {
-      this.totalPoundDayCalc += this.bothPound[i];
-      this.totalPoundDayCalc = parseFloat(this.totalPoundDay.toFixed(1));
+      this.totalPoundDay += this.bothPound[i];
+      this.totalPoundDay = parseFloat(this.totalPoundDay.toFixed(2));
     }
   }
 };
 
+
 capHill.randomCustHr ();
-capHill.cupHr ();
-capHill.poundHr ();
-capHill.poundCup ();
-capHill.bothPound ();
-capHill.empHr ();
+capHill.numCupHr ();
+capHill.numPoundHr ();
+capHill.numPoundCup ();
+capHill.numBothPound ();
+capHill.numEmpHr ();
 capHill.totalCustCalc ();
 capHill.totalCupCalc ();
 capHill.totalPoundTGCalc ();
@@ -180,7 +181,7 @@ var seaPub = {
   id: 'seattle public library',
   minCustHr: 9,
   maxCustHr: 45,
-  avgCupHr: 2.6,
+  avgCup: 2.6,
   avgPound: 0.02,
   custHr: [], //number of customers per hour
   cupHr: [], //number of cups per hour
@@ -199,27 +200,27 @@ var seaPub = {
       this.custHr[i] = Math.floor(Math.random() * (this.maxCustHr - this.minCustHr) + this.minCustHr);
     }
   },
-  cupHr: function() {
+  numCupHr: function() {
     for (var i = 0; i < time.length; i++) {
-      this.cupHr[i] = parseFloat((this.cupHr[i] * this.avgCupHr).toFixed(1));
+      this.cupHr[i] = parseFloat((this.custHr[i] * this.avgCup).toFixed(2));
     }
   },
-  poundHr: function() {
+  numPoundHr: function() {
     for (var i = 0; i < time.length; i++) {
-      this.poundHr[i] = parseFloat((this.custHr[i] * this.avgPound).toFixed(1));
+      this.poundHr[i] = parseFloat((this.custHr[i] * this.avgPound).toFixed(2));
     }
   },
-  poundCup: function() {
+  numPoundCup: function() {
     for (var i = 0; i < time.length; i++) {
-      this.poundCup[i] = parseFloat((this.cupHr[i] / 16).toFixed(1));
+      this.poundCup[i] = parseFloat((this.cupHr[i] / 16).toFixed(2));
     }
   },
-  bothPound: function() {
+  numBothPound: function() {
     for (var i = 0; i < time.length; i++) {
-      this.bothPound[i] = parseFloat((this.poundHr[i] + this.poundCup[i]).toFixed(1));
+      this.bothPound[i] = parseFloat((this.poundHr[i] + this.poundCup[i]).toFixed(2));
     }
   },
-  empHr: function() {
+  numEmpHr: function() {
     for (var i = 0; i < time.length; i++) {
       this.empHr[i] = Math.ceil(this.custHr[i] / 30);
     }
@@ -231,30 +232,30 @@ var seaPub = {
   },
   totalCupCalc: function() {
     for (var i = 0; i < time.length; i++) {
-      this.totalCup[i] += this.cupHr [i];
-      this.totalCup[i] = parseFloat(this.totalCup.toFixed(1));
+      this.totalCup += this.cupHr [i];
+      this.totalCup[i] = parseFloat(this.totalCup.toFixed(2));
     }
   },
   totalPoundTGCalc: function () {
     for (var i = 0; i < time.length; i++) {
       this.totalPoundTG += this.poundHr[i];
-      this.totalPoundTG = parseFloat(this.totalPoundTG.toFixed(1));
+      this.totalPoundTG = parseFloat(this.totalPoundTG.toFixed(2));
     }
   },
   totalPoundDayCalc: function () {
     for (var i = 0; i < time.length; i++) {
-      this.totalPoundDayCalc += this.bothPound[i];
-      this.totalPoundDayCalc = parseFloat(this.totalPoundDay.toFixed(1));
+      this.totalPoundDay += this.bothPound[i];
+      this.totalPoundDay = parseFloat(this.totalPoundDay.toFixed(2));
     }
   }
 };
 
 seaPub.randomCustHr ();
-seaPub.cupHr ();
-seaPub.poundHr ();
-seaPub.poundCup ();
-seaPub.bothPound ();
-seaPub.empHr ();
+seaPub.numCupHr ();
+seaPub.numPoundHr ();
+seaPub.numPoundCup ();
+seaPub.numBothPound ();
+seaPub.numEmpHr ();
 seaPub.totalCustCalc ();
 seaPub.totalCupCalc ();
 seaPub.totalPoundTGCalc ();
@@ -264,7 +265,7 @@ var slu = {
   id: 'south lake union',
   minCustHr: 5,
   maxCustHr: 18,
-  avgCupHr: 1.3,
+  avgCup: 1.3,
   avgPound: 0.04,
   custHr: [], //number of customers per hour
   cupHr: [], //number of cups per hour
@@ -283,27 +284,27 @@ var slu = {
       this.custHr[i] = Math.floor(Math.random() * (this.maxCustHr - this.minCustHr) + this.minCustHr);
     }
   },
-  cupHr: function() {
+  numCupHr: function() {
     for (var i = 0; i < time.length; i++) {
-      this.cupHr[i] = parseFloat((this.cupHr[i] * this.avgCupHr).toFixed(1));
+      this.cupHr[i] = parseFloat((this.custHr[i] * this.avgCup).toFixed(2));
     }
   },
-  poundHr: function() {
+  numPoundHr: function() {
     for (var i = 0; i < time.length; i++) {
-      this.poundHr[i] = parseFloat((this.custHr[i] * this.avgPound).toFixed(1));
+      this.poundHr[i] = parseFloat((this.custHr[i] * this.avgPound).toFixed(2));
     }
   },
-  poundCup: function() {
+  numPoundCup: function() {
     for (var i = 0; i < time.length; i++) {
-      this.poundCup[i] = parseFloat((this.cupHr[i] / 16).toFixed(1));
+      this.poundCup[i] = parseFloat((this.cupHr[i] / 16).toFixed(2));
     }
   },
-  bothPound: function() {
+  numBothPound: function() {
     for (var i = 0; i < time.length; i++) {
-      this.bothPound[i] = parseFloat((this.poundHr[i] + this.poundCup[i]).toFixed(1));
+      this.bothPound[i] = parseFloat((this.poundHr[i] + this.poundCup[i]).toFixed(2));
     }
   },
-  empHr: function() {
+  numEmpHr: function() {
     for (var i = 0; i < time.length; i++) {
       this.empHr[i] = Math.ceil(this.custHr[i] / 30);
     }
@@ -315,31 +316,31 @@ var slu = {
   },
   totalCupCalc: function() {
     for (var i = 0; i < time.length; i++) {
-      this.totalCup[i] += this.cupHr [i];
-      this.totalCup[i] = parseFloat(this.totalCup.toFixed(1));
+      this.totalCup += this.cupHr [i];
+      this.totalCup[i] = parseFloat(this.totalCup.toFixed(2));
     }
   },
   totalPoundTGCalc: function () {
     for (var i = 0; i < time.length; i++) {
       this.totalPoundTG += this.poundHr[i];
-      this.totalPoundTG = parseFloat(this.totalPoundTG.toFixed(1));
+      this.totalPoundTG = parseFloat(this.totalPoundTG.toFixed(2));
     }
   },
   totalPoundDayCalc: function () {
     for (var i = 0; i < time.length; i++) {
-      this.totalPoundDayCalc += this.bothPound[i];
-      this.totalPoundDayCalc = parseFloat(this.totalPoundDay.toFixed(1));
+      this.totalPoundDay += this.bothPound[i];
+      this.totalPoundDay = parseFloat(this.totalPoundDay.toFixed(2));
     }
   }
 };
 
 
 slu.randomCustHr ();
-slu.cupHr ();
-slu.poundHr ();
-slu.poundCup ();
-slu.bothPound ();
-slu.empHr ();
+slu.numCupHr ();
+slu.numPoundHr ();
+slu.numPoundCup ();
+slu.numBothPound ();
+slu.numEmpHr ();
 slu.totalCustCalc ();
 slu.totalCupCalc ();
 slu.totalPoundTGCalc ();
@@ -349,7 +350,7 @@ var seaTac = {
   id: 'seatac airport',
   minCustHr: 28,
   maxCustHr: 44,
-  avgCupHr: 1.1,
+  avgCup: 1.1,
   avgPound: 0.41,
   custHr: [], //number of customers per hour
   cupHr: [], //number of cups per hour
@@ -368,27 +369,27 @@ var seaTac = {
       this.custHr[i] = Math.floor(Math.random() * (this.maxCustHr - this.minCustHr) + this.minCustHr);
     }
   },
-  cupHr: function() {
+  numCupHr: function() {
     for (var i = 0; i < time.length; i++) {
-      this.cupHr[i] = parseFloat((this.cupHr[i] * this.avgCupHr).toFixed(1));
+      this.cupHr[i] = parseFloat((this.custHr[i] * this.avgCup).toFixed(2));
     }
   },
-  poundHr: function() {
+  numPoundHr: function() {
     for (var i = 0; i < time.length; i++) {
-      this.poundHr[i] = parseFloat((this.custHr[i] * this.avgPound).toFixed(1));
+      this.poundHr[i] = parseFloat((this.custHr[i] * this.avgPound).toFixed(2));
     }
   },
-  poundCup: function() {
+  numPoundCup: function() {
     for (var i = 0; i < time.length; i++) {
-      this.poundCup[i] = parseFloat((this.cupHr[i] / 16).toFixed(1));
+      this.poundCup[i] = parseFloat((this.cupHr[i] / 16).toFixed(2));
     }
   },
-  bothPound: function() {
+  numBothPound: function() {
     for (var i = 0; i < time.length; i++) {
-      this.bothPound[i] = parseFloat((this.poundHr[i] + this.poundCup[i]).toFixed(1));
+      this.bothPound[i] = parseFloat((this.poundHr[i] + this.poundCup[i]).toFixed(2));
     }
   },
-  empHr: function() {
+  numEmpHr: function() {
     for (var i = 0; i < time.length; i++) {
       this.empHr[i] = Math.ceil(this.custHr[i] / 30);
     }
@@ -400,30 +401,30 @@ var seaTac = {
   },
   totalCupCalc: function() {
     for (var i = 0; i < time.length; i++) {
-      this.totalCup[i] += this.cupHr [i];
-      this.totalCup[i] = parseFloat(this.totalCup.toFixed(1));
+      this.totalCup += this.cupHr [i];
+      this.totalCup[i] = parseFloat(this.totalCup.toFixed(2));
     }
   },
   totalPoundTGCalc: function () {
     for (var i = 0; i < time.length; i++) {
       this.totalPoundTG += this.poundHr[i];
-      this.totalPoundTG = parseFloat(this.totalPoundTG.toFixed(1));
+      this.totalPoundTG = parseFloat(this.totalPoundTG.toFixed(2));
     }
   },
   totalPoundDayCalc: function () {
     for (var i = 0; i < time.length; i++) {
-      this.totalPoundDayCalc += this.bothPound[i];
-      this.totalPoundDayCalc = parseFloat(this.totalPoundDay.toFixed(1));
+      this.totalPoundDay += this.bothPound[i];
+      this.totalPoundDay = parseFloat(this.totalPoundDay.toFixed(2));
     }
   }
 };
 
 seaTac.randomCustHr ();
-seaTac.cupHr ();
-seaTac.poundHr ();
-seaTac.poundCup ();
-seaTac.bothPound ();
-seaTac.empHr ();
+seaTac.numCupHr ();
+seaTac.numPoundHr ();
+seaTac.numPoundCup ();
+seaTac.numBothPound ();
+seaTac.numEmpHr ();
 seaTac.totalCustCalc ();
 seaTac.totalCupCalc ();
 seaTac.totalPoundTGCalc ();
