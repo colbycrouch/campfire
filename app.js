@@ -1,7 +1,7 @@
 var time = ['8:00am','9:00am','10:00am','11:00am','12:00pm','1:00pm','2:00pm','3:00pm','4:00pm','5:00pm','6:00pm','7:00pm','8:00pm'];
 
 var pikePlace = {
-  id: 'pike place market',
+  id: 'pikePlaceMarket',
   minCustHr: 14,
   maxCustHr: 35,
   avgCup: 1.2,
@@ -16,7 +16,8 @@ var pikePlace = {
   totalCup: 0, //sets value to 0 for total cups sold in a day
   totalPoundTG: 0, //sets value to 0 for total pounds of beans to go in a day
   totalPoundDay: 0, //sets value to 0 for total pounds of beans per day
-  //totalEmp: 0, // want to make this function to tell you based on total sales if you can afford that many hours based on a 18 percent labor model
+  ulEl: document.getElementById('pikePlaceMarket'),
+
 
   randomCustHr: function() {
     for (var i = 0; i < time.length; i++) {
@@ -71,29 +72,44 @@ var pikePlace = {
     }
     this.totalPoundDay = parseFloat(this.totalPoundDay.toFixed(2));
   },
+
+  render: function() {
+    this.randomCustHr ();
+    this.numCupHr ();
+    this.numPoundHr ();
+    this.numPoundCup ();
+    this.numBothPound ();
+    this.numEmpHr ();
+    this.totalCustCalc ();
+    this.totalCupCalc ();
+    this.totalPoundTGCalc ();
+    this.totalPoundDayCalc ();
+
+
+    var liEl = [];
+    for (var i = 0; i < time.length; i++) {
+      liEl[i] = document.createElement('li');
+      liEl[i].textContent = time[i] + ': ' + this.bothPound[i] + ' lbs, [' + this.custHr[i] + ' customers, ' + this.cupHr[i] + ' cups (' + this.poundCup[i] + ' lbs), ' + this.poundHr[i] + ' lbs to-go, ' + this.empHr[i] + ' employees needed]';
+      this.ulEl.appendChild(liEl[i]);
+    }
+    liEl[5] = document.createElement('li');
+    liEl[5].textContent = 'Total customers at PPM: ' + this.totalCust;
+    this.ulEl.appendChild(liEl[5]);
+    liEl[6] = document.createElement('li');
+    liEl[6].textContent = 'Total cups sold at PPM: ' + this.totalCup;
+    this.ulEl.appendChild(liEl[6]);
+    liEl[7] = document.createElement('li');
+    liEl[7].textContent = 'Total to-go pound packages sold at PPM: ' + this.totalPoundTG;
+    this.ulEl.appendChild(liEl[7]);
+    liEl[8] = document.createElement('li');
+    liEl[8].textContent = 'Total pounds of beans needed at PPM: ' + this.totalPoundDay;
+    this.ulEl.appendChild(liEl[8]);
+  }
 };
-
-
-pikePlace.randomCustHr ();
-pikePlace.numCupHr ();
-pikePlace.numPoundHr ();
-pikePlace.numPoundCup ();
-pikePlace.numBothPound ();
-pikePlace.numEmpHr ();
-pikePlace.totalCustCalc ();
-pikePlace.totalCupCalc ();
-pikePlace.totalPoundTGCalc ();
-pikePlace.totalPoundDayCalc ();
-
-// create element // var resultsEl = document.getElementsById ('results')
-
-//create content //var contentEl = document.createElement('ul');
-//  content.El.textContent = 'hello world';
-
-//append to parent // resultsEl.appendChild(contentEl)
+pikePlace.render();
 
 var capHill = {
-  id: 'capitol hill',
+  id: 'capitolhill',
   minCustHr: 12,
   maxCustHr: 28,
   avgCup: 3.2,
@@ -108,7 +124,7 @@ var capHill = {
   totalCup: 0, //sets value to 0 for total cups sold in a day
   totalPoundTG: 0, //sets value to 0 for total pounds of beans to go in a day
   totalPoundDay: 0, //sets value to 0 for total pounds of beans per day
-  //totalEmp: 0, // want to make this function to tell you based on total sales if you can afford that many hours based on a 18 percent labor model
+  ulEl: document.getElementById('capitolHill'),
 
   randomCustHr: function() {
     for (var i = 0; i < time.length; i++) {
@@ -147,9 +163,9 @@ var capHill = {
   },
   totalCupCalc: function() {
     for (var i = 0; i < time.length; i++) {
-      this.totalCup += this.cupHr [i];
-      this.totalCup[i] = parseFloat(this.totalCup.toFixed(2));
-    }
+      this.totalCup += this.cupHr [i];}
+    this.totalCup[i] = parseFloat(this.totalCup.toFixed(2));
+
   },
   totalPoundTGCalc: function () {
     for (var i = 0; i < time.length; i++) {
@@ -162,20 +178,41 @@ var capHill = {
       this.totalPoundDay += this.bothPound[i];
       this.totalPoundDay = parseFloat(this.totalPoundDay.toFixed(2));
     }
+  },
+
+  render: function () {
+    this.randomCustHr ();
+    this.numCupHr ();
+    this.numPoundHr ();
+    this.numPoundCup ();
+    this.numBothPound ();
+    this.numEmpHr ();
+    this.totalCustCalc ();
+    this.totalCupCalc ();
+    this.totalPoundTGCalc ();
+    this.totalPoundDayCalc ();
+
+    var liEl = [];
+    for (var i = 0; i < time.length; i++) {
+      liEl[i] = document.createElement('li');
+      liEl[i].textContent = time[i] + ': ' + this.bothPound[i] + ' lbs, [' + this.custHr[i] + ' customers, ' + this.cupHr[i] + ' cups (' + this.poundCup[i] + ' lbs), ' + this.poundHr[i] + ' lbs to-go, ' + this.empHr[i] + ' employees needed]';
+      this.ulEl.appendChild(liEl[i]);
+    }
+    liEl[5] = document.createElement('li');
+    liEl[5].textContent = 'Total customers at CH: ' + this.totalCust;
+    this.ulEl.appendChild(liEl[5]);
+    liEl[6] = document.createElement('li');
+    liEl[6].textContent = 'Total cups sold at CH: ' + this.totalCup;
+    this.ulEl.appendChild(liEl[6]);
+    liEl[7] = document.createElement('li');
+    liEl[7].textContent = 'Total to-go pound packages sold at CH: ' + this.totalPoundTG;
+    this.ulEl.appendChild(liEl[7]);
+    liEl[8] = document.createElement('li');
+    liEl[8].textContent = 'Total pounds of beans needed at CH: ' + this.totalPoundDay;
+    this.ulEl.appendChild(liEl[8]);
   }
 };
-
-
-capHill.randomCustHr ();
-capHill.numCupHr ();
-capHill.numPoundHr ();
-capHill.numPoundCup ();
-capHill.numBothPound ();
-capHill.numEmpHr ();
-capHill.totalCustCalc ();
-capHill.totalCupCalc ();
-capHill.totalPoundTGCalc ();
-capHill.totalPoundDayCalc ();
+capHill.render();
 
 var seaPub = {
   id: 'seattle public library',
@@ -193,7 +230,7 @@ var seaPub = {
   totalCup: 0, //sets value to 0 for total cups sold in a day
   totalPoundTG: 0, //sets value to 0 for total pounds of beans to go in a day
   totalPoundDay: 0, //sets value to 0 for total pounds of beans per day
-  //totalEmp: 0, // want to make this function to tell you based on total sales if you can afford that many hours based on a 18 percent labor model
+  ulEl: document.getElementById('seattlePublic'),
 
   randomCustHr: function() {
     for (var i = 0; i < time.length; i++) {
@@ -247,22 +284,43 @@ var seaPub = {
       this.totalPoundDay += this.bothPound[i];
       this.totalPoundDay = parseFloat(this.totalPoundDay.toFixed(2));
     }
+  },
+  render: function () {
+    this.randomCustHr ();
+    this.numCupHr ();
+    this.numPoundHr ();
+    this.numPoundCup ();
+    this.numBothPound ();
+    this.numEmpHr ();
+    this.totalCustCalc ();
+    this.totalCupCalc ();
+    this.totalPoundTGCalc ();
+    this.totalPoundDayCalc ();
+
+    var liEl = [];
+    for (var i = 0; i < time.length; i++) {
+      liEl[i] = document.createElement('li');
+      liEl[i].textContent = time[i] + ': ' + this.bothPound[i] + ' lbs, [' + this.custHr[i] + ' customers, ' + this.cupHr[i] + ' cups (' + this.poundCup[i] + ' lbs), ' + this.poundHr[i] + ' lbs to-go, ' + this.empHr[i] + ' employees needed]';
+      this.ulEl.appendChild(liEl[i]);
+    }
+    liEl[5] = document.createElement('li');
+    liEl[5].textContent = 'Total customers at SPL: ' + this.totalCust;
+    this.ulEl.appendChild(liEl[5]);
+    liEl[6] = document.createElement('li');
+    liEl[6].textContent = 'Total cups sold at SPL: ' + this.totalCup;
+    this.ulEl.appendChild(liEl[6]);
+    liEl[7] = document.createElement('li');
+    liEl[7].textContent = 'Total to-go pound packages sold at SPL: ' + this.totalPoundTG;
+    this.ulEl.appendChild(liEl[7]);
+    liEl[8] = document.createElement('li');
+    liEl[8].textContent = 'Total pounds of beans needed at SPL: ' + this.totalPoundDay;
+    this.ulEl.appendChild(liEl[8]);
   }
 };
-
-seaPub.randomCustHr ();
-seaPub.numCupHr ();
-seaPub.numPoundHr ();
-seaPub.numPoundCup ();
-seaPub.numBothPound ();
-seaPub.numEmpHr ();
-seaPub.totalCustCalc ();
-seaPub.totalCupCalc ();
-seaPub.totalPoundTGCalc ();
-seaPub.totalPoundDayCalc ();
+seaPub.render();
 
 var slu = {
-  id: 'south lake union',
+  id: 'southLakeUnion',
   minCustHr: 5,
   maxCustHr: 18,
   avgCup: 1.3,
@@ -277,7 +335,7 @@ var slu = {
   totalCup: 0, //sets value to 0 for total cups sold in a day
   totalPoundTG: 0, //sets value to 0 for total pounds of beans to go in a day
   totalPoundDay: 0, //sets value to 0 for total pounds of beans per day
-  //totalEmp: 0, // want to make this function to tell you based on total sales if you can afford that many hours based on a 18 percent labor model
+  ulEl: document.getElementById('southLakeUnion'),
 
   randomCustHr: function() {
     for (var i = 0; i < time.length; i++) {
@@ -331,23 +389,43 @@ var slu = {
       this.totalPoundDay += this.bothPound[i];
       this.totalPoundDay = parseFloat(this.totalPoundDay.toFixed(2));
     }
+  },
+  render: function () {
+    this.randomCustHr ();
+    this.numCupHr ();
+    this.numPoundHr ();
+    this.numPoundCup ();
+    this.numBothPound ();
+    this.numEmpHr ();
+    this.totalCustCalc ();
+    this.totalCupCalc ();
+    this.totalPoundTGCalc ();
+    this.totalPoundDayCalc ();
+
+    var liEl = [];
+    for (var i = 0; i < time.length; i++) {
+      liEl[i] = document.createElement('li');
+      liEl[i].textContent = time[i] + ': ' + this.bothPound[i] + ' lbs, [' + this.custHr[i] + ' customers, ' + this.cupHr[i] + ' cups (' + this.poundCup[i] + ' lbs), ' + this.poundHr[i] + ' lbs to-go, ' + this.empHr[i] + ' employees needed]';
+      this.ulEl.appendChild(liEl[i]);
+    }
+    liEl[5] = document.createElement('li');
+    liEl[5].textContent = 'Total customers at SLU: ' + this.totalCust;
+    this.ulEl.appendChild(liEl[5]);
+    liEl[6] = document.createElement('li');
+    liEl[6].textContent = 'Total cups sold at SLU: ' + this.totalCup;
+    this.ulEl.appendChild(liEl[6]);
+    liEl[7] = document.createElement('li');
+    liEl[7].textContent = 'Total to-go pound packages sold at SLU: ' + this.totalPoundTG;
+    this.ulEl.appendChild(liEl[7]);
+    liEl[8] = document.createElement('li');
+    liEl[8].textContent = 'Total pounds of beans needed at SLU: ' + this.totalPoundDay;
+    this.ulEl.appendChild(liEl[8]);
   }
 };
-
-
-slu.randomCustHr ();
-slu.numCupHr ();
-slu.numPoundHr ();
-slu.numPoundCup ();
-slu.numBothPound ();
-slu.numEmpHr ();
-slu.totalCustCalc ();
-slu.totalCupCalc ();
-slu.totalPoundTGCalc ();
-slu.totalPoundDayCalc ();
+slu.render();
 
 var seaTac = {
-  id: 'seatac airport',
+  id: 'seaTacAirport',
   minCustHr: 28,
   maxCustHr: 44,
   avgCup: 1.1,
@@ -362,7 +440,7 @@ var seaTac = {
   totalCup: 0, //sets value to 0 for total cups sold in a day
   totalPoundTG: 0, //sets value to 0 for total pounds of beans to go in a day
   totalPoundDay: 0, //sets value to 0 for total pounds of beans per day
-  //totalEmp: 0, // want to make this function to tell you based on total sales if you can afford that many hours based on a 18 percent labor model
+  ulEl: document.getElementById('seaTacAirport'),
 
   randomCustHr: function() {
     for (var i = 0; i < time.length; i++) {
@@ -416,16 +494,37 @@ var seaTac = {
       this.totalPoundDay += this.bothPound[i];
       this.totalPoundDay = parseFloat(this.totalPoundDay.toFixed(2));
     }
+  },
+  render: function () {
+    this.randomCustHr ();
+    this.numCupHr ();
+    this.numPoundHr ();
+    this.numPoundCup ();
+    this.numBothPound ();
+    this.numEmpHr ();
+    this.totalCustCalc ();
+    this.totalCupCalc ();
+    this.totalPoundTGCalc ();
+    this.totalPoundDayCalc ();
+
+    var liEl = [];
+    for (var i = 0; i < time.length; i++) {
+      liEl[i] = document.createElement('li');
+      liEl[i].textContent = time[i] + ': ' + this.bothPound[i] + ' lbs, [' + this.custHr[i] + ' customers, ' + this.cupHr[i] + ' cups (' + this.poundCup[i] + ' lbs), ' + this.poundHr[i] + ' lbs to-go, ' + this.empHr[i] + ' employees needed]';
+      this.ulEl.appendChild(liEl[i]);
+    }
+    liEl[5] = document.createElement('li');
+    liEl[5].textContent = 'Total customers at STA: ' + this.totalCust;
+    this.ulEl.appendChild(liEl[5]);
+    liEl[6] = document.createElement('li');
+    liEl[6].textContent = 'Total cups sold at STA: ' + this.totalCup;
+    this.ulEl.appendChild(liEl[6]);
+    liEl[7] = document.createElement('li');
+    liEl[7].textContent = 'Total to-go pound packages sold at STA: ' + this.totalPoundTG;
+    this.ulEl.appendChild(liEl[7]);
+    liEl[8] = document.createElement('li');
+    liEl[8].textContent = 'Total pounds of beans needed at STA: ' + this.totalPoundDay;
+    this.ulEl.appendChild(liEl[8]);
   }
 };
-
-seaTac.randomCustHr ();
-seaTac.numCupHr ();
-seaTac.numPoundHr ();
-seaTac.numPoundCup ();
-seaTac.numBothPound ();
-seaTac.numEmpHr ();
-seaTac.totalCustCalc ();
-seaTac.totalCupCalc ();
-seaTac.totalPoundTGCalc ();
-seaTac.totalPoundDayCalc ();
+seaTac.render();
