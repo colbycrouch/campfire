@@ -1,14 +1,14 @@
-var time = ['8:00am','9:00am','10:00am','11:00am','12:00pm','1:00pm','2:00pm','3:00pm','4:00pm','5:00pm','6:00pm','7:00pm','8:00pm'];
+var time = ['6:00am','7:00am','8:00am','9:00am','10:00am','11:00am','12:00pm','1:00pm','2:00pm','3:00pm','4:00pm','5:00pm','6:00pm','7:00pm','8:00pm'];
 var coffeeShop = [];
 var beanTableEl = document.getElementById('bean');
 var baristaTableEl = document.getElementById('barista');
 
-function CoffeeShop(name, min, max, cupHr, poundTG) {
+function CoffeeShop(name, minCustHr, maxCustHr, avgCupHr, avgPound) {
   this.name = name;
-  this.minCupHr = min;
-  this.maxCupHr = max;
-  this.avgCupHr = cupHr;
-  this.avgPound = poundTG;
+  this.minCustHr = minCustHr;
+  this.maxCustHr = maxCustHr;
+  this.avgCupHr = avgCupHr;
+  this.avgPound = avgPound;
   this.custHr = []; //number of customers per hour
   this.cupHr = []; //number of cups per hour
   this.poundHr = []; //total amt of to go pounds per hour
@@ -78,7 +78,7 @@ CoffeeShop.prototype.render = function(tableName) {
     tdEl[1].textContent = this.totalPoundDay;
     trEl.appendChild(tdEl[1]);
     for ( i = 0; i < time.length; i++) {
-      tdEl[i + 2].textContent = this.totalPoundDay[i];
+      tdEl[i + 2].textContent = this.bothPound[i];
       trEl.appendChild(tdEl[i + 2]);
     }
     beanTableEl.appendChild(trEl);
@@ -101,7 +101,7 @@ function tableTotal(tableName) {
   trEl.appendChild(tdEl[0]);
   tdEl[1] = document.createElement('td');
   if (tableName === bean) {
-    tdEl[1].textContent = parseFloat((coffeeShop[0].totalPoundDay + coffeeShop[1].totalPoundDay + coffeeShop[2].totalPoundDay + coffeeShop[3].totalPoundDay + coffeeShop[4].totalPoundDay).toFixed(2));
+    tdEl[1].textContent = parseFloat((coffeeShop[0].bothPound + coffeeShop[1].bothPound + coffeeShop[2].bothPound + coffeeShop[3].bothPound + coffeeShop[4].bothPound).toFixed(2));
     trEl.appendChild(tdEl[1]);
     for (var i = 0; i < time.length; i++) {
       tdEl[i + 2] = document.createElement('td');
@@ -130,11 +130,11 @@ function tableTotal(tableName) {
 }
 
 
-coffeeShop[0] = new CoffeeShop('pikePlace', 14, 35, 1.2, 0.34);
-coffeeShop[1] = new CoffeeShop('capHill',12, 28, 3.2, 0.03);
-coffeeShop[2] = new CoffeeShop('seaPub',9, 45, 2.6, 0.02);
-coffeeShop[3] = new CoffeeShop('slu',5, 18, 1.3, 0.04);
-coffeeShop[4] = new CoffeeShop('seaTac', 28, 44, 1.1, 0.41);
+coffeeShop[0] = new CoffeeShop('Pike Place Market', 14, 35, 1.2, 0.34);
+coffeeShop[1] = new CoffeeShop('Capitol Hill',12, 28, 3.2, 0.03);
+coffeeShop[2] = new CoffeeShop('Seattle Public Library',9, 45, 2.6, 0.02);
+coffeeShop[3] = new CoffeeShop('South Lake Union',5, 18, 1.3, 0.04);
+coffeeShop[4] = new CoffeeShop('Sea-Tac Airport', 28, 44, 1.1, 0.41);
 
 tableHeader(bean);
 tableHeader(barista);

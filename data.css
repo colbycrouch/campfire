@@ -1,0 +1,36 @@
+body {
+    background-image: url(imgs/campsite-tent-night.jpg);
+    background-size: auto;
+    text-align: center;
+    color: darkorange;
+    font-family: 'Original Surfer', cursive;
+}
+
+td, th, table {
+  background-color: grey;
+  border-style: solid;
+  border-width: thin;
+  border-color: darkorange;
+  text-align: center;
+  color: black;
+  font-family: 'Poiret One', cursive;
+}
+
+h2 {
+  background-color: grey;
+  color:  orange;
+  border-width: medium;
+  border-style: solid;
+  border-color: darkorange;
+  width: 500px;
+  padding: 10px;
+  height: content;
+  margin: 20px auto;
+
+}
+
+table {
+  margin: 20px auto;
+  border-width: medium;
+
+}
