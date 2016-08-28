@@ -11,11 +11,6 @@
   </header>
   <img class='campfire' src="imgs/campfire-coffee.jpg">
 <section class="campsite">
-  <h1>We are open Monday through Sunday</h1>
-    <h3>6am to 9pm</h3>
-    
-</section>
-<section class="campsite">
     <h1>Locations</h1>
       <h3>Pike Place Market</h3>
       <h3>Capitol Hill</h3>
@@ -23,6 +18,33 @@
       <h3>South Lake Union</h3>
       <h3>Sea-Tac Airport</h3>
 </section>
-    <script type="text/javascript" src=""></script>
+
+<div class="slideshow-container">
+  <div class="mySlides fade">
+    <div class="numbertext">1 / 2</div>
+    <img src="imgs/campfire-family.jpg" style="width:50%">
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">2 / 2</div>
+    <img src="imgs/campfire.jpg" style="width:50%">
+  </div>
+
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+</div>
+
+<section class="campsite">
+  <h1>We are open Monday through Sunday</h1>
+    <h3>6am to 9pm</h3>
+</section>
+
+    <script type="text/javascript" src="index.js"></script>
   </body>
   </html>
