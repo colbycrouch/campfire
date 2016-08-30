@@ -6,7 +6,7 @@ body {
     font-family: 'Original Surfer', cursive;
 }
 
-td, th, table {
+td, th, table, form {
   background-color: grey;
   border-style: solid;
   border-width: thin;

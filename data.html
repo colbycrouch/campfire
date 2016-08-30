@@ -12,15 +12,22 @@
   </header>
   <section>
     <h2>Beans Needed By Location Each Day</h2>
-    <table id="bean"></table>
+    <table id='bean'></table>
     <h2>Baristas Needed By Location Each Day</h2>
-    <table id="barista"></table>
-    <!-- <ul id="pikePlaceMarket"><h4>PPM - Pike Place Market</h4></ul>
-    <ul id="capitolHill"><h4>CH - Capitol Hill</h4></ul>
-    <ul id="seattlePublic"><h4>SPL - Seattle Public Library</h4></ul>
-    <ul id="southLakeUnion"><h4>SLU - South Lake Union</h4></ul>
-    <ul id="seaTacAirport"><h4>STA - Sea-Tac Airport</h4></ul> -->
+    <table id='barista'></table>
+    
+    <form>
+      <fieldset>
+        <legend>New Shop Information</legend>
+        <label for='name'> Shop <input type='text' id='name' size="20" maxlength="30"></label>
+        <label for='minCustHr'> Minimum Cust/hour <input  type='text' id='minCustHr' name='minCustHr'></label>
+        <label for='maxCustHr'> Maximum Cust/hour <input  type='text' id='maxCustHr' name='maxCustHr'></label>
+        <label for='avgCupHr'> Average Cups/hour <input  type='text' id='avgCupHr' name='avgCupHr'></label>
+        <label for='avgPound'> Average Pounds ToGo/hour <input  type='text' id='avgPound' name='avgPound'></label form='submit'>
+        <input id='submit' type='submit'/>
+      </fieldset>
+    </form>
   </section>
-  <script type="text/javascript" src="app.js"></script>
+  <script type='text/javascript' src='app.js'></script>
 </body>
 </html>
